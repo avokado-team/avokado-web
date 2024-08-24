@@ -26,6 +26,14 @@ body {
     rgb(var(--background-start-rgb));
 }
 
+@layer components {
+  .primary-btn {
+    @apply w-full rounded-md bg-[#3BB197] text-center font-medium text-white transition-colors;
+  }
+  .primary-reverse-btn {
+    @apply w-full rounded-md bg-white text-center font-medium text-[#3BB197] border border-[#3BB197] transition-colors;
+  }
+}
 @layer utilities {
   .text-balance {
     text-wrap: balance;
