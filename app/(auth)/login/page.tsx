@@ -15,7 +15,7 @@ export default function Login() {
           <h1 className="font-bold text-2xl">로그인</h1>
           <h2 className="text-sm mb-4">아보카도에 오신 것을 환영합니다.</h2>
         </div>
-        <form action={dispatch} className="flex flex-col gap-1">
+        <form action={dispatch} className="flex flex-col gap-2">
           <Label name="이메일" />
           <Input
             required
