@@ -4,21 +4,15 @@ import { getSession } from "./lib/session";
 interface IRoutes {
   [key: string]: boolean;
 }
+
 const publicOnlyUrls: IRoutes = {
   "/": true,
   "/login": true,
 };
+
 export async function middleware(request: NextRequest) {
   const session = await getSession();
   const exists = publicOnlyUrls[request.nextUrl.pathname];
-  // if (session.access) {
-  //   if (session.exp && session.exp < Date.now()) {
-  //     const refresh = await silentRefresh(session);
-  //     if (!refresh) {
-  //       return NextResponse.redirect(new URL("/login", request.url));
-  //     }
-  //   }
-  // }
 
   if (!session.access) {
     if (!exists) {

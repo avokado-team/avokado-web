@@ -38,7 +38,7 @@ export default async function Profile() {
 
   return (
     <div className="mx-auto max-w-lg gap-10 w-full flex flex-col justify-center items-center h-screen *:text-black">
-      <span>Welcom {user.name}</span>
+      <span>Welcom {user?.name}</span>
       <form action={logOut} className="w-full">
         <button className="primary-btn h-10">Log out</button>
       </form>
