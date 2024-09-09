@@ -20,6 +20,16 @@ export default async function Profile() {
   const logOut = async () => {
     "use server";
     const session = await getSession();
+
+    fetch(`${process.env.GATEWAY_ENDPOINT!}/user/signout`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${session.access}`,
+      },
+      body: JSON.stringify({ refresh: session.refresh }),
+    });
+
     await session.destroy();
     redirect("/");
   };
