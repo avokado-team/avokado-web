@@ -27,6 +27,7 @@ export async function login(_: any, formData: FormData) {
     return result.error.flatten();
   }
 
+  console.log(process.env.GATEWAY_ENDPOINT);
   const request = await fetch(`${process.env.GATEWAY_ENDPOINT!}/user/signin`, {
     method: "POST",
     headers: {
@@ -34,6 +35,7 @@ export async function login(_: any, formData: FormData) {
     },
     body: JSON.stringify(data),
   });
+  console.log(request.status);
 
   if (!request.ok) {
     return {
