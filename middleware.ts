@@ -8,6 +8,9 @@ interface IRoutes {
 const publicOnlyUrls: IRoutes = {
   "/": true,
   "/login": true,
+  "/find-password": true,
+  "/find-password/done": true,
+  "/signup": true,
 };
 
 export async function middleware(request: NextRequest) {
