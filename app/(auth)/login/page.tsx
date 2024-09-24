@@ -4,6 +4,7 @@ import Input from "@/components/input";
 import { useFormState } from "react-dom";
 import { login } from "./actions";
 import Label from "@/components/label";
+import Link from "next/link";
 
 export default function Login() {
   const [state, dispatch] = useFormState(login, null);
@@ -33,13 +34,18 @@ export default function Login() {
             errors={state?.fieldErrors.password}
           />
           <div className="flex justify-end mt-2 mb-8">
-            <a className="text-xs text-[#818181] cursor-pointer underline">
+            <Link
+              className="text-xs text-[#818181] cursor-pointer underline"
+              href="/find-password"
+            >
               비밀번호를 잊으셨나요?
-            </a>
+            </Link>
           </div>
           <button className="primary-btn h-14">로그인</button>
         </form>
-        <button className="primary-reverse-btn h-14">회원가입</button>
+        <Link href="/signup">
+          <button className="primary-reverse-btn h-14">회원가입</button>
+        </Link>
       </div>
     </div>
   );
