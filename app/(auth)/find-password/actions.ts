@@ -37,5 +37,5 @@ export async function findPassword(_: any, formData: FormData) {
   //     };
   //   }
 
-  redirect("/find-password/done");
+  return true;
 }
