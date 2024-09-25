@@ -49,5 +49,27 @@ export async function signup(prevState: any, formData: FormData) {
     return result.error.flatten();
   }
 
+  const request = await fetch(`${process.env.GATEWAY_ENDPOINT!}/user/signup`, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(data),
+  });
+
+  if (!request.ok) {
+    if (request.status === 409) {
+      return {
+        fieldErrors: {
+          email: ["이미 존재하는 이메일입니다."],
+          name: [],
+          password: [],
+          confirm_password: [],
+        },
+      };
+    }
+    return false;
+  }
+
   return true;
 }
