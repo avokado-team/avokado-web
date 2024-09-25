@@ -4,10 +4,20 @@ import Input from "@/components/input";
 import Label from "@/components/label";
 import { findPassword } from "./actions";
 import { useFormState } from "react-dom";
+import { useState, useEffect } from "react";
+import EmailConfirm from "@/components/email_confirm";
 
 export default function FindPassword() {
   const [state, dispatch] = useFormState(findPassword, null);
-  return (
+  const [isDone, setIsDone] = useState(false);
+
+  useEffect(() => {
+    if (state) {
+      setIsDone(true);
+    }
+  }, [state]);
+
+  return !isDone ? (
     <div className="mx-auto max-w-lg text-black flex items-center justify-center h-screen">
       <div className="flex flex-col gap-6 bg-[#ECF8F5] px-20 py-16 w-full rounded-xl">
         <div className="flex flex-col gap-2">
@@ -21,11 +31,13 @@ export default function FindPassword() {
             name="email"
             type="email"
             placeholder="Email"
-            errors={state?.fieldErrors.email}
+            errors={[]}
           />
           <button className="primary-btn h-14 mt-8">비밀번호 재설정</button>
         </form>
       </div>
     </div>
+  ) : (
+    <EmailConfirm />
   );
 }
