@@ -17,6 +17,9 @@ export default function Signup() {
     if (state && typeof state === "boolean") {
       setIsDone(true);
     }
+    if (!state && typeof state === "boolean") {
+      alert("서버 오류가 발생했습니다. 잠시 후 다시 시도해주세요.");
+    }
   }, [state]);
 
   return !isDone ? (
