@@ -12,7 +12,7 @@ export default function FindPassword() {
   const [isDone, setIsDone] = useState(false);
 
   useEffect(() => {
-    if (state) {
+    if (state && typeof state === "boolean") {
       setIsDone(true);
     }
   }, [state]);
