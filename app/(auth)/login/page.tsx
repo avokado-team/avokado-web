@@ -5,6 +5,7 @@ import { useFormState } from "react-dom";
 import { login } from "./actions";
 import Label from "@/components/label";
 import Link from "next/link";
+import Button from "@/components/button";
 
 export default function Login() {
   const [state, dispatch] = useFormState(login, null);
@@ -41,10 +42,14 @@ export default function Login() {
               비밀번호를 잊으셨나요?
             </Link>
           </div>
-          <button className="primary-btn h-14">로그인</button>
+          <Button className="hover:bg-[#258D76] transition-colors">
+            로그인
+          </Button>
         </form>
         <Link href="/signup">
-          <button className="primary-reverse-btn h-14">회원가입</button>
+          <Button className="primary-reverse-btn hover:bg-[#3BB197] hover:text-white transition-colors">
+            회원가입
+          </Button>
         </Link>
       </div>
     </div>
