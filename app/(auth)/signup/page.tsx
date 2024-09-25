@@ -2,6 +2,7 @@
 
 import Input from "@/components/input";
 import Label from "@/components/label";
+import Button from "@/components/button";
 
 export default function Login() {
   return (
@@ -14,6 +15,7 @@ export default function Login() {
           <Label name="이름" />
           <Input
             required
+            className="h-12"
             name="name"
             type="text"
             placeholder="이름"
@@ -22,6 +24,7 @@ export default function Login() {
           <Label name="이메일" />
           <Input
             required
+            className="h-12"
             name="email"
             type="email"
             placeholder="이메일"
@@ -30,6 +33,7 @@ export default function Login() {
           <Label name="비밀번호" />
           <Input
             required
+            className="h-12"
             name="password"
             type="password"
             placeholder="비밀번호"
@@ -38,12 +42,15 @@ export default function Login() {
           <Label name="비밀번호 확인" />
           <Input
             required
+            className="h-12"
             name="password"
             type="password"
             placeholder="비밀번호 확인"
             errors={[]}
           />
-          <button className="primary-btn h-14 mt-4">회원가입</button>
+          <Button className="mt-4 h-12 hover:bg-[#258D76] transition-colors">
+            회원가입
+          </Button>
         </form>
       </div>
     </div>
