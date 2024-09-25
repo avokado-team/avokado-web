@@ -3,15 +3,29 @@
 import Input from "@/components/input";
 import Label from "@/components/label";
 import Button from "@/components/button";
+import { useFormState } from "react-dom";
+import { signup } from "./actions";
+import { useEffect, useState } from "react";
+import Link from "next/link";
+import EmailConfirm from "@/components/email_confirm";
 
-export default function Login() {
-  return (
+export default function Signup() {
+  const [state, dispatch] = useFormState(signup, null);
+  const [isDone, setIsDone] = useState(false);
+
+  useEffect(() => {
+    if (state) {
+      setIsDone(true);
+    }
+  }, [state]);
+
+  return !isDone ? (
     <div className="mx-auto max-w-lg text-black flex items-center justify-center h-screen">
       <div className="flex flex-col gap-6 bg-[#ECF8F5] px-20 py-16 w-full rounded-xl">
         <div className="flex flex-col gap-2">
           <h1 className="font-bold text-2xl">회원가입</h1>
         </div>
-        <form className="flex flex-col gap-2">
+        <form action={dispatch} className="flex flex-col gap-2">
           <Label name="이름" />
           <Input
             required
@@ -54,5 +68,7 @@ export default function Login() {
         </form>
       </div>
     </div>
+  ) : (
+    <EmailConfirm />
   );
 }
