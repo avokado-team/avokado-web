@@ -6,7 +6,6 @@ import Button from "@/components/button";
 import { useFormState } from "react-dom";
 import { signup } from "./actions";
 import { useEffect, useState } from "react";
-import Link from "next/link";
 import EmailConfirm from "@/components/email_confirm";
 
 export default function Signup() {
@@ -14,7 +13,8 @@ export default function Signup() {
   const [isDone, setIsDone] = useState(false);
 
   useEffect(() => {
-    if (state) {
+    console.log(state);
+    if (state && typeof state === "boolean") {
       setIsDone(true);
     }
   }, [state]);
@@ -33,7 +33,7 @@ export default function Signup() {
             name="name"
             type="text"
             placeholder="이름"
-            errors={[]}
+            errors={typeof state === "object" ? state?.fieldErrors?.name : []}
           />
           <Label name="이메일" />
           <Input
@@ -42,7 +42,7 @@ export default function Signup() {
             name="email"
             type="email"
             placeholder="이메일"
-            errors={[]}
+            errors={typeof state === "object" ? state?.fieldErrors?.email : []}
           />
           <Label name="비밀번호" />
           <Input
@@ -51,16 +51,22 @@ export default function Signup() {
             name="password"
             type="password"
             placeholder="비밀번호"
-            errors={[]}
+            errors={
+              typeof state === "object" ? state?.fieldErrors?.password : []
+            }
           />
           <Label name="비밀번호 확인" />
           <Input
             required
             className="h-12"
-            name="password"
+            name="confirm_password"
             type="password"
             placeholder="비밀번호 확인"
-            errors={[]}
+            errors={
+              typeof state === "object"
+                ? state?.fieldErrors?.confirm_password
+                : []
+            }
           />
           <Button className="mt-4 h-12 hover:bg-[#258D76] transition-colors">
             회원가입

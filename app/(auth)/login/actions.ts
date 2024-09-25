@@ -11,7 +11,7 @@ interface AvkaJwtPayload extends JwtPayload {
 }
 
 const formSchema = z.object({
-  email: z.string().email().toLowerCase(),
+  email: z.string().email(),
   password: z.string().min(PASSWORD_MIN_LENGTH).regex(PASSWORD_REGEX),
 });
 
