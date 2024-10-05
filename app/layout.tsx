@@ -18,7 +18,9 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={`${inter.className} bg-white bg-[url('/bg.png')]`}>
+      <body
+        className={`${inter.className} bg-white bg-[url('/bg.png')] bg-cover`}
+      >
         {children}
         <Analytics />
         <SpeedInsights />
