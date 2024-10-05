@@ -54,5 +54,5 @@ export async function login(_: any, formData: FormData) {
   session.exp = claims.exp;
 
   session.save();
-  redirect("/");
+  return redirect("/");
 }
