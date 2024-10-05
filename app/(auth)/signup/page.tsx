@@ -6,7 +6,7 @@ import Button from "@/components/button";
 import { useFormState } from "react-dom";
 import { signup } from "./actions";
 import { useEffect, useState } from "react";
-import EmailConfirm from "@/components/email_confirm";
+import EmailConfirm from "@/components/email-confirm";
 
 export default function Signup() {
   const [state, dispatch] = useFormState(signup, null);

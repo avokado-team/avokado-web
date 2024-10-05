@@ -5,7 +5,7 @@ import Label from "@/components/label";
 import { findPassword } from "./actions";
 import { useFormState } from "react-dom";
 import { useState, useEffect } from "react";
-import EmailConfirm from "@/components/email_confirm";
+import EmailConfirm from "@/components/email-confirm";
 
 export default function FindPassword() {
   const [state, dispatch] = useFormState(findPassword, null);
