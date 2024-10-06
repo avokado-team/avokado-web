@@ -6,9 +6,16 @@ import { login } from "./actions";
 import Label from "@/components/label";
 import Link from "next/link";
 import Button from "@/components/button";
+import { useEffect } from "react";
 
 export default function Login() {
   const [state, dispatch] = useFormState(login, null);
+
+  useEffect(() => {
+    if (typeof state === "boolean" && state === false) {
+      alert("이메일 인증이 필요합니다.");
+    }
+  }, [state]);
 
   return (
     <div className="mx-auto max-w-lg text-black flex items-center justify-center h-screen">
@@ -24,7 +31,7 @@ export default function Login() {
             name="email"
             type="email"
             placeholder="Email"
-            errors={state?.fieldErrors.email}
+            errors={typeof state === "object" ? state?.fieldErrors.email : []}
           />
           <Label name="비밀번호" />
           <Input
@@ -32,7 +39,9 @@ export default function Login() {
             name="password"
             type="password"
             placeholder="Password"
-            errors={state?.fieldErrors.password}
+            errors={
+              typeof state === "object" ? state?.fieldErrors.password : []
+            }
           />
           <div className="flex justify-end mt-2 mb-8">
             <Link

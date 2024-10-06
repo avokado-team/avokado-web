@@ -25,34 +25,40 @@ export async function login(_: any, formData: FormData) {
 
   if (!result.success) {
     return result.error.flatten();
+  } else {
+    const request = await fetch(
+      `${process.env.GATEWAY_ENDPOINT!}/user/signin`,
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(data),
+      }
+    );
+
+    if (!request.ok) {
+      if (request.status === 409) {
+        return false;
+      }
+      return {
+        fieldErrors: {
+          password: ["Email or password is incorrect."],
+          email: ["Email or password is incorrect."],
+        },
+      };
+    }
+
+    const token = await request.json();
+    const claims: AvkaJwtPayload = jwtDecode<AvkaJwtPayload>(token.access);
+
+    const session = await getSession();
+    session.access = token.access;
+    session.refresh = token.refresh;
+    session.id = claims.user_id;
+    session.exp = claims.exp;
+
+    await session.save();
+    redirect("/");
   }
-
-  const request = await fetch(`${process.env.GATEWAY_ENDPOINT!}/user/signin`, {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify(data),
-  });
-
-  if (!request.ok) {
-    return {
-      fieldErrors: {
-        password: ["Email or password is incorrect."],
-        email: ["Email or password is incorrect."],
-      },
-    };
-  }
-
-  const token = await request.json();
-  const claims: AvkaJwtPayload = jwtDecode<AvkaJwtPayload>(token.access);
-
-  const session = await getSession();
-  session.access = token.access;
-  session.refresh = token.refresh;
-  session.id = claims.user_id;
-  session.exp = claims.exp;
-
-  session.save();
-  return redirect("/");
 }

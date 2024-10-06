@@ -30,8 +30,8 @@ export default async function Profile() {
       body: JSON.stringify({ refresh: session.refresh }),
     });
 
-    await session.destroy();
-    redirect("/");
+    session.destroy();
+    redirect("/login");
   };
 
   const user = await getUser();
