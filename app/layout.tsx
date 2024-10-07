@@ -19,7 +19,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${inter.className} bg-white bg-[url('/bg.png')] bg-cover`}
+        className={`${inter.className} bg-white bg-[url('/bg.png')] bg-center bg-cover`}
       >
         {children}
         <Analytics />
