@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from "next/server";
-import { getSession } from "./lib/session";
+import { getReqSession, getSession } from "./lib/session";
 
 interface IRoutes {
   [key: string]: boolean;
@@ -14,9 +14,18 @@ const publicOnlyUrls: IRoutes = {
 export async function middleware(request: NextRequest) {
   const session = await getSession();
   const exists = publicOnlyUrls[request.nextUrl.pathname];
-  if (!session.id) {
+
+  if (session.exp && session.exp < Date.now() / 1000) {
+    const response = NextResponse.redirect(new URL("/login", request.url));
+    const new_session = await getReqSession(request, response);
+    new_session.destroy();
+    return response;
+  } else if (!session.id) {
     if (!exists) {
-      return NextResponse.redirect(new URL("/login", request.url));
+      const response = NextResponse.redirect(new URL("/login", request.url));
+      const new_session = await getReqSession(request, response);
+      new_session.destroy();
+      return response;
     }
   } else {
     if (exists) {
