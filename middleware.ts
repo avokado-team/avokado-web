@@ -9,6 +9,8 @@ const publicOnlyUrls: IRoutes = {
   "/login": true,
   "/find-password": true,
   "/signup": true,
+  "/user/confirm-email": true,
+  "/user/confirm-email-done": true,
 };
 
 export async function middleware(request: NextRequest) {
@@ -36,6 +38,6 @@ export async function middleware(request: NextRequest) {
 
 export const config = {
   matcher: [
-    "/((?!api|_next/static|_next/image|favicon.ico|.*\\.png$|.*\\.svg$).*)",
+    "/((?!api|_next/static|user/confirm-email|_next/image|favicon.ico|.*\\.png$|.*\\.svg$).*)",
   ],
 };

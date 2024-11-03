@@ -3,7 +3,6 @@
 import Image from "next/image";
 
 export default function ListStockItem({ stock }: { stock: IListStockItem }) {
-  console.log(stock);
   return (
     <div className="flex flex-col gap-3 border rounded-xl bg-white">
       <div className="w-72 h-44 rounded-xl bg-white relative">

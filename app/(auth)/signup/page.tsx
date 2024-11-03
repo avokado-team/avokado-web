@@ -13,7 +13,6 @@ export default function Signup() {
   const [isDone, setIsDone] = useState(false);
 
   useEffect(() => {
-    console.log(state);
     if (state && typeof state === "boolean") {
       setIsDone(true);
     }
