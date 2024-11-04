@@ -5,7 +5,7 @@ export function GET(request: NextRequest) {
   const id = request.nextUrl.pathname.split("/")[3];
   const api = `${process.env.GATEWAY_ENDPOINT}/user/confirm-email/${id}`;
   console.log(api);
-  return fetch(api)
+  fetch(api)
     .then((res) => {
       if (res.ok) {
         console.log(res);
