@@ -3,7 +3,7 @@ import Link from "next/link";
 export default function EmailConfirm() {
   return (
     <div className="mx-auto max-w-lg text-black flex items-center justify-center h-screen">
-      <div className="flex flex-col gap-6 bg-[#ECF8F5] px-20 py-16 w-full rounded-xl">
+      <div className="flex flex-col gap-6 bg-[#ECF8F5] sm:px-20 px-10 py-16 w-full rounded-xl">
         <div className="flex flex-col gap-2">
           <h1 className="font-bold text-2xl">인증메일을 보내드렸습니다!</h1>
           <h2 className="text-sm mb-4">
