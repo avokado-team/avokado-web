@@ -23,7 +23,7 @@ export default function Signup() {
 
   return !isDone ? (
     <div className="mx-auto max-w-lg text-black flex items-center justify-center h-screen">
-      <div className="flex flex-col gap-6 bg-[#ECF8F5] px-20 py-16 w-full rounded-xl">
+      <div className="flex flex-col gap-6 bg-[#ECF8F5] sm:px-20 px-10 py-16 w-full rounded-xl">
         <div className="flex flex-col gap-2">
           <h1 className="font-bold text-2xl">회원가입</h1>
         </div>
